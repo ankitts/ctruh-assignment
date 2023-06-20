@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("register/", views.RegisterUser.as_view()),
     path("tasks/", views.TaskViewSet.as_view({'get': 'list'})),
     path("tasks/remaining", views.TaskViewSet.as_view({'get': 'list_remaining'})),
     path("tasks/<int:pk>", views.TaskViewSet.as_view({'get': 'retrieve'})),

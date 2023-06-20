@@ -1,13 +1,28 @@
 from django.http import HttpResponse
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.authtoken.models import Token
 from .models import Task
-from .serializers import TaskSerializer
+from .serializers import TaskSerializer, UserSerializer, User
 
 def index(request):
     return HttpResponse("Hello! You are at index.")
+
+class RegisterUser(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data = request.data)
+
+        if not serializer.is_valid():
+            return Response({'status' : 403, 'errors' : serializer.errors})
+        
+        serializer.save()
+
+        user = User.objects.get(username = serializer.data['username'])
+        token_obj, _ = Token.objects.get_or_create(user=user)
+        return Response({'status': 200, 'payload': serializer.data, 'token': str(token_obj), 'message': 'User Created'})
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
