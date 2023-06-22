@@ -3,9 +3,9 @@ The main project resides in task/ directory.
 
 ## Instructions to run the app locally: ##
 * Clone the repo, install the requirements and move to this directory
-  * `git clone https://github.com/Ankit-Somani/ctruh-assignment.git`
+  * `git clone https://github.com/Ankit-Somani/ctruh-assignment.git`  
+  * `cd ctruh-assignment/task`
   * `pip install -r requirements.txt`
-  * `cd ctruh-assignment/task` 
 * Run the django app
   * `python manage.py runserver`
 * Copy the url shown in the terminal and open it in a browser.
