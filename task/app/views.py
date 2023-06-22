@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.conf import settings
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
@@ -24,11 +25,13 @@ class RegisterUser(APIView):
         token_obj, _ = Token.objects.get_or_create(user=user)
         return Response({'status': 200, 'payload': serializer.data, 'token': str(token_obj), 'message': 'User Created'})
 
+
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
 
+    
     # to show all tasks ordered by due date
     def list(self, request):
         tasks = Task.objects.all().order_by('due_date')
@@ -77,7 +80,7 @@ class TaskViewSet(viewsets.ModelViewSet):
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-    @action(detail=True, methods=['post'])
+    @action(detail=True, methods=['patch'])
     def complete(self, request, pk=None):
         try:
             task = self.get_object()

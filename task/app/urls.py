@@ -10,5 +10,5 @@ urlpatterns = [
     path("tasks/create", views.TaskViewSet.as_view({'post' : 'create'})),
     path("tasks/update/<int:pk>", views.TaskViewSet.as_view({'patch': 'partial_update'})),
     path("tasks/delete/<int:pk>", views.TaskViewSet.as_view({'delete': 'destroy'})),
-    path("tasks/complete/<int:pk>", views.TaskViewSet.as_view({'post': 'complete'}))
+    path("tasks/complete/<int:pk>", views.TaskViewSet.as_view({'patch': 'complete'}))
 ]
