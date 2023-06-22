@@ -13,7 +13,7 @@ The main project resides in task/ directory.
     
     ![image](https://github.com/Ankit-Somani/ctruh-assignment/assets/82326089/d545f716-a287-49f0-85bd-6df1fed39b9d)
 
-  * http://127.0.0.1:8000/app/tasks/: returns all the tasks currently in the database
+  * http://127.0.0.1:8000/app/tasks/: returns all the tasks currently in the database in order of nearest due date
   * http://127.0.0.1:8000/app/tasks/remaining: returns all the tasks with status incomplete
   * http://127.0.0.1:8000/app/tasks/pk: return the task with task number = pk (replace pk to some integer in the route)
   * http://127.0.0.1:8000/app/tasks/create: make a POST request at this route to create a task with request body like: {'task_no': 5, 'task_name': 'write readme', 'due_date': '2023-06-23', 'completed': 0}
